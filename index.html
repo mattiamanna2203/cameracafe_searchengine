@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html lang="it">
+  <head>
+      <meta charset="UTF-8">
+      <title>Cerca l'episodio</title>
+
+      <!--Importare gli stili css-->
+      
+      <link rel="stylesheet" href="Stili/CameraCafeInterface.css">
+      <!--Rendere utilizzabili i pyscript-->
+      <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+      <!--Rendere utilizzabili i pyscript-->
+      <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  </head>
+  <body>
+
+   <div>
+      <p class="cartoony-text">Camera Cafe Search Engine</p>
+       <p >Inserire delle parole chiave per ricercare un particolare episodio</p>
+   </div>
+
+   <div class="flexbox">
+      <input class="barra-ricerca" placeholder="Inserire parole chiave">
+      <button class="avvio" > Avviare la ricerca </button>
+   </div>
+
+<!--onclick="console.log('ciao')""-->
+
+  </body>
+
+<!--Tutorial su pyscript: https://www.youtube.com/watch?v=owopzp436jM-->
+
+
+<py-script src="./Prova.py"></py-script> <!--Importare un file .py-->
+   <!--<py-script src="./SearchEngine.py"></py-script>-->
+
+   <script>
+      const button= document.querySelector(".avvio");
+      const stringa= document.querySelector(".barra-ricerca");
+      button.addEventListener('click',() =>{console.log('ciao');   console.log(stringa.value);}) 
+
+   </script>
+</html>
+

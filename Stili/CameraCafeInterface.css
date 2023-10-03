@@ -1,0 +1,40 @@
+
+.flexbox{
+    display: flex; /*Indichiamo che sia una flexbox*/
+    flex-direction: row; /*Per avere un layout orizzontale,DEFAULT*/
+}
+
+body{
+ background-color:  antiquewhite;
+}
+
+
+/* Define a custom font-family for the cartoony effect */
+@font-face {
+   font-family: 'CartoonyFont';
+   src: url('path-to-your-cartoony-font.woff') format('woff');
+   /* You should replace 'path-to-your-cartoony-font.woff' with the actual font file path. */
+}
+
+/* Apply the custom font-family to the text */
+.cartoony-text {
+   font-family: 'CartoonyFont', sans-serif;
+   font-size: 36px;
+   text-transform: uppercase; /* Make the text uppercase for a cartoony look */
+   letter-spacing: 4px; /* Increase letter spacing for added emphasis */
+   color: #FF6600; /* Choose a cartoony color */
+   /*text-shadow: 1px 3px 0px #000; /* Add a shadow to the text for depth */
+}
+
+.avvio{
+  flex:0.25; /* Larghezza desiderata, la stessa dell'input */
+   height: 30px; /* Altezza desiderata, la stessa dell'input */   
+font-size: 11px;
+}
+
+
+.barra-ricerca{
+   flex:2;
+   height: 28px;
+   border : none;
+}
