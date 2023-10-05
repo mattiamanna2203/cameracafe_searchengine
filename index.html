@@ -32,7 +32,12 @@
 <!--Tutorial su pyscript: https://www.youtube.com/watch?v=owopzp436jM-->
 
 
-<py-script src="./Prova.py"></py-script> <!--Importare un file .py-->
+
+<py-config>
+packages=["pandas","nltk"]
+</py-config>
+
+<py-script src="./Light_SearchEngine.py"></py-script> <!--Importare un file .py-->
    <!--<py-script src="./SearchEngine.py"></py-script>-->
 
    <script>

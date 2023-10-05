@@ -24,3 +24,14 @@ Stili/.DS_Store
 .ipynb_checkpoints/SearchEngine-checkpoint.ipynb
 .ipynb_checkpoints/GIT-checkpoint.ipynb
 GIT.ipynb
+Light_SearchEngine.ipynb
+SearchEngine.ipynb
+Script_python/02_light_Create_index.ipynb
+Script_python/.ipynb_checkpoints
+Dati/inverted_idx.json
+Dati/tfidf_index.csv
+Dati/vocabulary.json
+Dati/word_dict.json
+.ipynb_checkpoints
+SearchEngine.ipynb
+
