@@ -11,6 +11,10 @@
       <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
       <!--Rendere utilizzabili i pyscript-->
       <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+      <!--Importare JavaScript-->
+      <script src="Javascript/buttons.js"></script>
+      <script src="Javascript/import_data.js"></script>
   </head>
   <body>
 
@@ -32,20 +36,19 @@
 
 
 <py-config>
-packages=["pandas","nltk"]
+packages=["pandas","nltk","requests"]
 </py-config>
 <py-script>
    import pandas as pd
+   import json
    from pyodide.http import open_url
-   df=pd.read_csv("Dati/light_dati_puliti.csv")
+   import urllib.request
+
+   #Dataframe principale, info puntate, personaggi, guest star.
+   df=pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/blob/master/Dati/light_dati_puliti.csv"))
+  
+   #Dataframe degli index
+   DF2=pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/blob/master/Dati/light_tfidf_index.csv"))
 </py-script>
 <py-script src="./Light_SearchEngine.py"></py-script> 
-
-   <script>
-      const button= document.querySelector(".avvio");
-      const stringa= document.querySelector(".barra-ricerca");
-      button.addEventListener('click',() =>{console.log('ciao');   console.log(stringa.value);}) 
-
-   </script>
 </html>
-

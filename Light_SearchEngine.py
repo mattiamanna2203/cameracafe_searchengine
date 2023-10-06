@@ -24,15 +24,18 @@ from nltk.stem import SnowballStemmer
 # In[2]:
 
 
-df=pd.read_csv("Dati/light_dati_puliti.csv")
-df.drop(columns={'Unnamed: 0'},inplace=True)
+#df=pd.read_csv("Dati/light_dati_puliti.csv")
+try:
+    df.drop(columns={'Unnamed: 0'},inplace=True)
+except:
+    pass
 
-DF2=pd.read_csv("Dati/light_tfidf_index.csv", index_col=None)
-DF2.drop(columns={'Unnamed: 0'},inplace=True)
+#DF2=pd.read_csv("Dati/light_tfidf_index.csv", index_col=None)
+try:
+    DF2.drop(columns={'Unnamed: 0'},inplace=True)
+except:
+    pass
 
-with open("/Users/mattia/Desktop/Camera cafe/_SearchEngine/Dati/lista_gueststar.txt", 'r') as v:
-    n=v.read()
-star=n.split(",")
 
 
 # ## Import vocabulary
