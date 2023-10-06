@@ -37,25 +37,7 @@
 <py-config>
 packages=["pandas","nltk","requests"]
 </py-config>
-<py-script>
-   import pandas as pd
-   import json
-   from pyodide.http import open_url
 
-
-   #Dataframe principale, info puntate, personaggi, guest star.
-   df=pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_dati_puliti.csv"))
-   
-   print(df.columns)
-   #Dataframe degli index
-   DF2=pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_tfidf_index.csv"))
-   print(DF2.columns)
-
-
-   inverted_idx = pd.read_json(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_inverted_idx.json"))
-   #print(inverted_idx)
-
-</py-script>
-<!--<py-script src="./Light_SearchEngine.py"></py-script> -->
+<py-script src="./Light_SearchEngine.py"></py-script>
 <script src="Javascript/buttons.js"></script>
 </html>

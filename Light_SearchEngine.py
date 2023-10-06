@@ -19,12 +19,42 @@ import math
 from nltk.stem import SnowballStemmer
 
 
-# ## Import data
-
-# In[2]:
+from pyodide.http import open_url
 
 
-#df=pd.read_csv("Dati/light_dati_puliti.csv")
+#Dataframe principale, info puntate, personaggi, guest star.
+df=pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_dati_puliti.csv"))
+
+
+#Dataframe degli index
+DF2=pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_tfidf_index.csv"))
+
+
+df_vocabulary = pd.read_json(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_vocabulary.json"),orient='index')
+df_vocabulary.reset_index(inplace=True)
+vocabulary={row['index'] : row[0] for i,row in df_vocabulary.iterrows()}
+
+
+
+df_word_dict = pd.read_json(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_word_dict.json"),orient='index')
+df_word_dict.reset_index(inplace=True)
+word_dict={row['index'] : row[0] for i,row in df_word_dict.iterrows()}
+
+
+
+df_inverted_idx = pd.read_json(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_inverted_idx.json"),orient='index')
+colonne=df_inverted_idx.columns
+df_inverted_idx.reset_index(inplace=True)
+df_inverted_idx[df_inverted_idx.index==1]
+inverted_idx={}
+for i,row in df_inverted_idx.iterrows():
+    lista=[]
+    for column in colonne:
+        if np.isnan(row[column])==False:
+            lista.append(int(row[column]))
+    inverted_idx[int(row['index'])]=lista
+
+
 try:
     df.drop(columns={'Unnamed: 0'},inplace=True)
 except:
@@ -37,27 +67,6 @@ except:
     pass
 
 
-
-# ## Import vocabulary
-
-# In[3]:
-
-
-with open("Dati/light_vocabulary.json", 'r') as v:
-    vocabulary = json.load(v)
-    
-with open("Dati/light_vocabulary.json", 'r') as wd:
-    word_dict  = json.load(wd)
-    
-#with open("Dati/light_inverted_idx.json", 'r') as inv_idx:
-    inverted_idx = json.load(inv_idx)
-
-
-# # Engine
-
-# ## Stemmer
-
-# In[4]:
 
 
 def stem_text_light(txt):
