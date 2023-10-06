@@ -9,16 +9,9 @@ body{
 }
 
 
-/* Define a custom font-family for the cartoony effect */
-@font-face {
-   font-family: 'CartoonyFont';
-   src: url('path-to-your-cartoony-font.woff') format('woff');
-   /* You should replace 'path-to-your-cartoony-font.woff' with the actual font file path. */
-}
 
 /* Apply the custom font-family to the text */
 .cartoony-text {
-   font-family: 'CartoonyFont', sans-serif;
    font-size: 36px;
    text-transform: uppercase; /* Make the text uppercase for a cartoony look */
    letter-spacing: 4px; /* Increase letter spacing for added emphasis */

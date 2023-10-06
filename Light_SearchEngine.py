@@ -49,7 +49,7 @@ with open("Dati/light_vocabulary.json", 'r') as v:
 with open("Dati/light_vocabulary.json", 'r') as wd:
     word_dict  = json.load(wd)
     
-with open("Dati/light_inverted_idx.json", 'r') as inv_idx:
+#with open("Dati/light_inverted_idx.json", 'r') as inv_idx:
     inverted_idx = json.load(inv_idx)
 
 

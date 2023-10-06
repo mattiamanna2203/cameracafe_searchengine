@@ -21,20 +21,3 @@ async function import_json(filename){
    console.log(t);
 }
 //import_json("light_word_dict")
-
-const githubRawUrl = 'https://github.com/mattiamanna2203/cameracafe_searchengine/raw/master/Dati/light_word_dict.json';
-
-fetch(githubRawUrl)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`Failed to fetch ${githubRawUrl}: ${response.status} ${response.statusText}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    // Now you can work with the JSON data
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
