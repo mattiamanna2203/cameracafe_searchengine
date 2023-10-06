@@ -24,9 +24,7 @@
       <button class="avvio" > Avviare la ricerca </button>
    </div>
 
-<!--onclick="console.log('ciao')""-->
-<!--onclick="console.log('ciao')""-->
-<!--onclick="console.log('ciao')""-->
+
   </body>
 
 <!--Tutorial su pyscript: https://www.youtube.com/watch?v=owopzp436jM-->
@@ -36,9 +34,12 @@
 <py-config>
 packages=["pandas","nltk"]
 </py-config>
-
-<py-script src="./Light_SearchEngine.py"></py-script> <!--Importare un file .py-->
-   <!--<py-script src="./SearchEngine.py"></py-script>-->
+<py-script>
+   import pandas as pd
+   from pyodide.http import open_url
+   df=pd.read_csv("Dati/light_dati_puliti.csv")
+</py-script>
+<py-script src="./Light_SearchEngine.py"></py-script> 
 
    <script>
       const button= document.querySelector(".avvio");
