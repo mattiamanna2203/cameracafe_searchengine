@@ -9,12 +9,20 @@ Dati/terzastagione.csv
 Dati/quartastagione.csv
 Dati/quintastagione.csv
 Dati/sestastagione.csv
+
 Dati/inverted_idx.json
 Dati/tfidf_index.csv
 Dati/vocabulary.json
 Dati/word_dict.json
+
+Dati/lista_gueststar.txt
+
 Dati/.ipynb_checkpoints
 bozze.py
+
+
+
+
 
 
 Script_python/01_PuliziaDati.ipynb
