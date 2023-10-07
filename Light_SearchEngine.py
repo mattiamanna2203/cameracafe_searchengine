@@ -28,14 +28,16 @@ df=pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/camer
 DF2=pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_tfidf_index.csv"))
 
 
-df_vocabulary = pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_vocabulary.csv"),orient='index')
-vocabulary=vocabulary_df.to_dict()[0]
+df_vocabulary = pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_vocabulary.csv"))
+df_vocabulary.set_index('Unnamed: 0', inplace=True)
+vocabulary=df_vocabulary.to_dict()['0']
+#print(vocabulary)
 
 
-
-df_word_dict = pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_word_dict.csv"),orient='index')
-word_dict=word_dict_df.to_dict()[0]   #IMPORTAZIONE, Dal pandas dataframe  tornare al dizionare
-
+df_word_dict = pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_word_dict.csv"))
+df_word_dict .set_index('Unnamed: 0', inplace=True)
+word_dict=df_word_dict.to_dict()['0']   #IMPORTAZIONE, Dal pandas dataframe  tornare al dizionare
+#print(word_dict)
 
 
 
@@ -364,7 +366,7 @@ def query_ranking(query_str,k,season=None,stars=None,research_type=0):
         dd=dd[['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione']][df.season==season]
     
     if dd.shape[0]==0: #in caso il dataframe di output è vuoto si print un messaggio di errore
-        print("Nessuna puntata ritrovata: \n   - Provare ad ampliare la ricerca (es: eliminare restrizioni sulle stagioni);\n   - Controllare ciò che è stato scritto.")
+       # print("Nessuna puntata ritrovata: \n   - Provare ad ampliare la ricerca (es: eliminare restrizioni sulle stagioni);\n   - Controllare ciò che è stato scritto.")
         return None
     
 
@@ -372,9 +374,10 @@ def query_ranking(query_str,k,season=None,stars=None,research_type=0):
     
     dd.reset_index(drop=True,inplace=True)
     #display(HTML(dd.head(k).to_html()))
-    return dd
+    #print(dd.head(k))
+    return dd.head(k)
 
-
+#%% Dati
 inverted_idx={
     "1": [
         0
