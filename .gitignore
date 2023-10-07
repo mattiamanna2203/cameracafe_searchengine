@@ -10,10 +10,22 @@ Dati/quartastagione.csv
 Dati/quintastagione.csv
 Dati/sestastagione.csv
 
+
+Dati/dati_puliti.csv
+Dati/light_word_dict.json
+
+
+
 Dati/inverted_idx.json
+Dati/light_inverted_idx.json
+
 Dati/tfidf_index.csv
+
 Dati/vocabulary.json
+Dati/light_vocabulary.json
+
 Dati/word_dict.json
+Dati/light_word_dict.json
 
 Dati/lista_gueststar.txt
 
