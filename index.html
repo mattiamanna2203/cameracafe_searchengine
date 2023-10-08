@@ -17,10 +17,6 @@
 
       <py-script src="PyScript/events_listeners.py"></py-script> <!--Script contenente event listener utilizzati per richiamare le searchengine contenute nel file "PyScript/Light_SearchEngine.py".
       COME UTILIZZARE PYTHON E JAVASCRIPT INSIEME, utilizzare un python molto simile a JavaScript.-->
-
-      <!--Importare JavaScript-->
-      <script src="JavaScript/buttons.js"></script> <!--In questo script sono contenuti gli event listener Java.-->
-      <script  src="JavaScript/create_table.js"></script> <!--JavaScript: Input JSON, Output Tabella ben formattata-->
   </head>
   <body>
 
@@ -40,4 +36,21 @@
       </div>
     </main>
   </body>
+<script>
+// Example using Node.js and Express.js to set Cache-Control header
+const express = require('express');
+const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-cache');
+  next();
+});
+
+// Your routes and middleware
+// ...
+
+</script>
+ <!--Importare JavaScript-->
+      <script src="JavaScript/buttons.js"></script> <!--In questo script sono contenuti gli event listener Java.-->
+      <script  src="JavaScript/create_table.js"></script> <!--JavaScript: Input JSON, Output Tabella ben formattata-->
 </html>
