@@ -28,6 +28,15 @@ body{
   cursor: pointer;
 }
 
+.bottoni-barra-di-ricerca:hover{
+  opacity: 0.8;
+
+}
+
+.bottoni-barra-di-ricerca:active{
+  opacity: 0.4;
+}
+
 /*Rendere più piccolo il pulsante dei filtri.*/
 #filter{
   flex:0.10;
