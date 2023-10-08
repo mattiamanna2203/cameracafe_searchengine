@@ -6,18 +6,9 @@
 
       <!--Importare gli stili css-->
       <link rel="stylesheet" href="Stili/CameraCafeInterface.css">
-      <!--Rendere utilizzabili i pyscript-->
-      <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-      <!--Rendere utilizzabili i pyscript-->
-      <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
-
-     <!--Importare pacchetti da destinare a PyScript-->
-      <py-config>packages=["pandas","nltk"]</py-config> <!--Pacchetti-->
-      <py-script src="PyScript/Light_SearchEngine.py"></py-script> <!--Funzioni back-end,cuore della searchengine-->
-      <py-script src="PyScript/events_listeners.py"></py-script> <!--Script contenente event listener utilizzati per richiamare le searchengine contenute nel file "PyScript/Light_SearchEngine.py".
-      COME UTILIZZARE PYTHON E JAVASCRIPT INSIEME, utilizzare un python molto simile a JavaScript.-->
-      
-      
+      <link rel="stylesheet" href="Stili/stili_tabella.css">
+      <link rel="stylesheet" href="Stili/stile_filtri.css">
+      <link rel="stylesheet" href="Stili/checkbox.css">
   </head>
   <body>
 
@@ -28,7 +19,8 @@
 
    <div class="flexbox">
       <input class="barra-ricerca" placeholder="Inserire parole chiave">
-      <button class="avvio" id="avvio-ricerca" > Avviare la ricerca </button> <!--py-click="query_ranking('paolo bitta',5)"-->
+      <button class="bottoni-barra-di-ricerca" id="filter" > Filtri </button> 
+      <button class="bottoni-barra-di-ricerca" id="avvio-ricerca" > Avviare la ricerca </button> <!--py-click="query_ranking('paolo bitta',5)"-->
    </div>
 
     <main>
@@ -37,8 +29,527 @@
       </div>
     </main>
 
+<!-- Modal HTML structure -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" id="closeModal">&times;</span>
+      <h2>Selezionare i filtri desiderati:</h2>
+
+
+      <!--Check box per la stagione-->
+      <div class="run-filter">
+        <div class="run-filter-elemento1">
+          <form id="make_checkbox_select">
+            <select name="Stagione">
+              <option  value=1>Prima stagione</option>
+              <option  value=2>Seconda stagione</option>
+              <option  value=3>Terza stagione</option>
+              <option  value=4>Quarta stagione</option>
+              <option  value=5>Quinta stagione</option>
+              <option  value=6>Sesta stagione</option>
+            </select>
+            <input type="submit" value="Conferma"/>
+          </form>
+        </div>
+        <div class="run-filter-elemento2">
+          <button class="avvio-rapido-season" id="only-season"> 
+          Solo stagioni
+            <div class="tooltip-up">
+              Cliccando questo pulsante <br> verranno restituite tutte le puntate <br> delle stagioni selezionate
+            </div>
+          </button>
+        </div>
+      </div>
+       <!--Fine check box per la stagione-->
+      <p></p>
+
+       <!--Check box guest star-->
+      <div class="run-filter">
+        <div class="run-filter-elemento1">
+         
+          <form id="make_checkbox_select_gueststar">
+          <select name="Guest star">
+          <option value="Adriana De Guilmi">Adriana De Guilmi</option>
+          <option value="Adriano Braidotti">Adriano Braidotti</option>
+          <option value="Adriano Martinez">Adriano Martinez</option>
+          <option value="Adriano Passoni">Adriano Passoni</option>
+          <option value="Ajub Elamraoui">Ajub Elamraoui</option>
+          <option value="Albertino">Albertino</option>
+          <option value="Alberto Angrisano">Alberto Angrisano</option>
+          <option value="Alberto Bognanni">Alberto Bognanni</option>
+          <option value="Alberto Fasoli">Alberto Fasoli</option>
+          <option value="Alberto Giusta">Alberto Giusta</option>
+          <option value="Alberto Onofrietti">Alberto Onofrietti</option>
+          <option value="Alberto Pistacchia">Alberto Pistacchia</option>
+          <option value="Alena Šeredová">Alena Šeredová</option>
+          <option value="Alessandro Adriano">Alessandro Adriano</option>
+          <option value="Alessandro Bergallo">Alessandro Bergallo</option>
+          <option value="Alessandro Borghese">Alessandro Borghese</option>
+          <option value="Alessandro Campanile">Alessandro Campanile</option>
+          <option value="Alessandro Curino">Alessandro Curino</option>
+          <option value="Alessandro Dinuzzi">Alessandro Dinuzzi</option>
+          <option value="Alessandro Gabelli">Alessandro Gabelli</option>
+          <option value="Alessandro Genovesi">Alessandro Genovesi</option>
+          <option value="Alessandro Gruttadauria">Alessandro Gruttadauria</option>
+          <option value="Alessandro Haber">Alessandro Haber</option>
+          <option value="Alessandro Mistichelli">Alessandro Mistichelli</option>
+          <option value="Alessandro Politi">Alessandro Politi</option>
+          <option value="Alessandro Scavone">Alessandro Scavone</option>
+          <option value="Alessia Marcuzzi">Alessia Marcuzzi</option>
+          <option value="Alessia Spinelli">Alessia Spinelli</option>
+          <option value="Alessia Ventura">Alessia Ventura</option>
+          <option value="Alex Cendron">Alex Cendron</option>
+          <option value="Alex Sassatelli">Alex Sassatelli</option>
+          <option value="Alex Zanardi">Alex Zanardi</option>
+          <option value="Amadeus">Amadeus</option>
+          <option value='Andrea "Ahmed" Orancone'>Andrea "Ahmed" Orancone</option>
+          <option value="Andrea Baiardi">Andrea Baiardi</option>
+          <option value="Andrea Beltramo">Andrea Beltramo</option>
+          <option value="Andrea Berlinghieri">Andrea Berlinghieri</option>
+          <option value="Andrea Brancone">Andrea Brancone</option>
+          <option value="Andrea Caimmi">Andrea Caimmi</option>
+          <option value="Andrea Carraro">Andrea Carraro</option>
+          <option value="Andrea Dianetti">Andrea Dianetti</option>
+          <option value="Andrea Marchesi">Andrea Marchesi</option>
+          <option value="Andrea Montuschi">Andrea Montuschi</option>
+          <option value="Andrea Piovan">Andrea Piovan</option>
+          <option value="Andrea Ramilli">Andrea Ramilli</option>
+          <option value="Andrea Santonastaso">Andrea Santonastaso</option>
+          <option value="Andy Luotto">Andy Luotto</option>
+          <option value="Angelo Pintus">Angelo Pintus</option>
+          <option value="Anna Bonasso">Anna Bonasso</option>
+          <option value="Anna Safroncik">Anna Safroncik</option>
+          <option value="Antonella Dragotta">Antonella Dragotta</option>
+          <option value="Antonio Brugnano">Antonio Brugnano</option>
+          <option value="Antonio Conte">Antonio Conte</option>
+          <option value="Antonio Russo">Antonio Russo</option>
+          <option value="Antonio Zavatteri">Antonio Zavatteri</option>
+          <option value="Arianna Bergamaschi">Arianna Bergamaschi</option>
+          <option value="Arturo Di Tullio">Arturo Di Tullio</option>
+          <option value="Aída Yéspica">Aída Yéspica</option>
+          <option value="Barbara Chiappini">Barbara Chiappini</option>
+          <option value="Barbara Esposito">Barbara Esposito</option>
+          <option value="Barbara Faggioli">Barbara Faggioli</option>
+          <option value="Beatrice Maestrini">Beatrice Maestrini</option>
+          <option value="Beatrice Schiros">Beatrice Schiros</option>
+          <option value="Bedy Moratti">Bedy Moratti</option>
+          <option value="Benedetta Parodi">Benedetta Parodi</option>
+          <option value="Beppe Severgnini">Beppe Severgnini</option>
+          <option value="Bob Messini">Bob Messini</option>
+          <option value="Brando Giorgi">Brando Giorgi</option>
+          <option value="Branko Vikich">Branko Vikich</option>
+          <option value="Bruno Solo">Bruno Solo</option>
+          <option value="Camilla Semino Favro">Camilla Semino Favro</option>
+          <option value="Carla Chiarelli">Carla Chiarelli</option>
+          <option value="Carla Signoris">Carla Signoris</option>
+          <option value="Carlo De Ruggieri">Carlo De Ruggieri</option>
+          <option value="Carlo Decio">Carlo Decio</option>
+          <option value="Carlo Puzo Gerbino">Carlo Puzo Gerbino</option>
+          <option value="Caroline Sanchez">Caroline Sanchez</option>
+          <option value="Cecilia Vecchio">Cecilia Vecchio</option>
+          <option value="Cesare Spagnuolo">Cesare Spagnuolo</option>
+          <option value="Chen Ruisheng">Chen Ruisheng</option>
+          <option value="Chiara Andreis">Chiara Andreis</option>
+          <option value="Chiara Claudi">Chiara Claudi</option>
+          <option value="Chiara Francini">Chiara Francini</option>
+          <option value="Christian Giammarini">Christian Giammarini</option>
+          <option value="Claudia Gerini">Claudia Gerini</option>
+          <option value="Claudia Grego">Claudia Grego</option>
+          <option value="Claudia Griffini">Claudia Griffini</option>
+          <option value="Claudia Lawrence">Claudia Lawrence</option>
+          <option value="Claudio Migliavacca">Claudio Migliavacca</option>
+          <option value="Claudio Sterpone">Claudio Sterpone</option>
+          <option value="Claudio Taroppi">Claudio Taroppi</option>
+          <option value="Clelia Piscitello">Clelia Piscitello</option>
+          <option value="Clizia Fornasier">Clizia Fornasier</option>
+          <option value="Corrado Villa">Corrado Villa</option>
+          <option value="Cristian Stelluti">Cristian Stelluti</option>
+          <option value="Cristiano Caldironi">Cristiano Caldironi</option>
+          <option value="Daniela Airoldi">Daniela Airoldi</option>
+          <option value="Daniele Cantalupo">Daniele Cantalupo</option>
+          <option value="Daniele Gaggianese">Daniele Gaggianese</option>
+          <option value="Daniele Gatti">Daniele Gatti</option>
+          <option value="Daniele Maltempi">Daniele Maltempi</option>
+          <option value="Danilo De Summa">Danilo De Summa</option>
+          <option value="Danilo Gallinari">Danilo Gallinari</option>
+          <option value="Danilo Nessi">Danilo Nessi</option>
+          <option value="Dario Dossena">Dario Dossena</option>
+          <option value="Dario Solini">Dario Solini</option>
+          <option value="David Parenzo">David Parenzo</option>
+          <option value="David Sef">David Sef</option>
+          <option value="Davide Dalusio">Davide Dalusio</option>
+          <option value="Davide Di Stefano">Davide Di Stefano</option>
+          <option value="Davide Giandrini">Davide Giandrini</option>
+          <option value="Davide Iacopini">Davide Iacopini</option>
+          <option value="Davide Paniate">Davide Paniate</option>
+          <option value="Davide Silvestri">Davide Silvestri</option>
+          <option value="Davide Umiliata">Davide Umiliata</option>
+          <option value="Debora Zuin">Debora Zuin</option>
+          <option value="Diego Balconi">Diego Balconi</option>
+          <option value="Diego Casale">Diego Casale</option>
+          <option value="Dino Abbrescia">Dino Abbrescia</option>
+          <option value="Domenico Di Berardino">Domenico Di Berardino</option>
+          <option value="Edoardo Ribatto">Edoardo Ribatto</option>
+          <option value="Elena Lietti">Elena Lietti</option>
+          <option value="Elena Ramogino">Elena Ramogino</option>
+          <option value="Ellen Hidding">Ellen Hidding</option>
+          <option value="Emanuele Barresi">Emanuele Barresi</option>
+          <option value="Emanuele Fiore">Emanuele Fiore</option>
+          <option value="Emanuele Fortunati">Emanuele Fortunati</option>
+          <option value="Emanuele Salce">Emanuele Salce</option>
+          <option value="Emiliana Perina">Emiliana Perina</option>
+          <option value="Emiliano Bradi">Emiliano Bradi</option>
+          <option value="Emmanuel Galli">Emmanuel Galli</option>
+          <option value="Enrica Barel">Enrica Barel</option>
+          <option value="Enrico Baroni">Enrico Baroni</option>
+          <option value="Enrico Beruschi">Enrico Beruschi</option>
+          <option value="Enrico Ceva">Enrico Ceva</option>
+          <option value="Enrico Salimbeni">Enrico Salimbeni</option>
+          <option value="Enzo Brasolin">Enzo Brasolin</option>
+          <option value="Enzo Giraldo">Enzo Giraldo</option>
+          <option value="Eric Claire">Eric Claire</option>
+          <option value="Ettore Distasio">Ettore Distasio</option>
+          <option value="Eugenio Gradabosco">Eugenio Gradabosco</option>
+          <option value="Eva Collini">Eva Collini</option>
+          <option value="Fabio Caressa">Fabio Caressa</option>
+          <option value="Fabio Marchisio">Fabio Marchisio</option>
+          <option value="Fabio Martinello">Fabio Martinello</option>
+          <option value="Fabio Traversa">Fabio Traversa</option>
+          <option value="Fabio Troiano">Fabio Troiano</option>
+          <option value="Fabio Vassallo">Fabio Vassallo</option>
+          <option value="Fabio Volo">Fabio Volo</option>
+          <option value="Fabio Zerba">Fabio Zerba</option>
+          <option value="Fabrizio Gasparetto">Fabrizio Gasparetto</option>
+          <option value="Fabrizio Lombardo">Fabrizio Lombardo</option>
+          <option value="Fabrizio Martorelli">Fabrizio Martorelli</option>
+          <option value="Fabrizio Pagella">Fabrizio Pagella</option>
+          <option value="Fabrizio Viganò">Fabrizio Viganò</option>
+          <option value="Fatah Ghedi">Fatah Ghedi</option>
+          <option value="Federica Fabiani">Federica Fabiani</option>
+          <option value="Federico Bonaconza">Federico Bonaconza</option>
+          <option value="Federico Bonoconza">Federico Bonoconza</option>
+          <option value="Federico Gobbi">Federico Gobbi</option>
+          <option value="Federico Russo">Federico Russo</option>
+          <option value="Federico Torre">Federico Torre</option>
+          <option value="Filippo Chiero">Filippo Chiero</option>
+          <option value="Filippo Usellini">Filippo Usellini</option>
+          <option value="Fioretta Mari">Fioretta Mari</option>
+          <option value="Flavio Insinna">Flavio Insinna</option>
+          <option value="Flavio Parenti">Flavio Parenti</option>
+          <option value="Francesca Belussi">Francesca Belussi</option>
+          <option value="Francesca Faiella">Francesca Faiella</option>
+          <option value="Francesca Giovannetti">Francesca Giovannetti</option>
+          <option value="Francesca Martinez">Francesca Martinez</option>
+          <option value="Francesco Angeli">Francesco Angeli</option>
+          <option value="Francesco Arienzo">Francesco Arienzo</option>
+          <option value="Francesco Faeti">Francesco Faeti</option>
+          <option value="Francesco Leoni">Francesco Leoni</option>
+          <option value="Francesco Meola">Francesco Meola</option>
+          <option value="Francesco Pannofino">Francesco Pannofino</option>
+          <option value="Francesco Randazzo">Francesco Randazzo</option>
+          <option value="Franco Maino">Franco Maino</option>
+          <option value="Gabriele Ciavarra">Gabriele Ciavarra</option>
+          <option value="Gabriella Franchini">Gabriella Franchini</option>
+          <option value="Gaetano Varcasia">Gaetano Varcasia</option>
+          <option value="Gaia Messerklinger">Gaia Messerklinger</option>
+          <option value="Gaia ed Eva">Gaia ed Eva</option>
+          <option value="Giacomo Valenti">Giacomo Valenti</option>
+          <option value="Giampiero Bartolini">Giampiero Bartolini</option>
+          <option value="Gianluca Frigerio">Gianluca Frigerio</option>
+          <option value="Gianluca Gambino">Gianluca Gambino</option>
+          <option value="Gianluca Iacono">Gianluca Iacono</option>
+          <option value="Gianmarco Tognazzi">Gianmarco Tognazzi</option>
+          <option value="Gianni Ansaldi">Gianni Ansaldi</option>
+          <option value="Gianni Bissaca">Gianni Bissaca</option>
+          <option value="Gianni Quillico">Gianni Quillico</option>
+          <option value="Gianpaolo Gambi">Gianpaolo Gambi</option>
+          <option value="Gibba">Gibba</option>
+          <option value="Gimmy Andersen">Gimmy Andersen</option>
+          <option value="Gioele Dix">Gioele Dix</option>
+          <option value="Giorgia Palmas">Giorgia Palmas</option>
+          <option value="Giorgia Senesi">Giorgia Senesi</option>
+          <option value="Giorgio Mastrota">Giorgio Mastrota</option>
+          <option value="Giorgio Reali">Giorgio Reali</option>
+          <option value="Giovanna Civitillo">Giovanna Civitillo</option>
+          <option value="Giovanni Carretti">Giovanni Carretti</option>
+          <option value="Giovanni Franzoni">Giovanni Franzoni</option>
+          <option value="Giovanni Sanicola">Giovanni Sanicola</option>
+          <option value="Giovanni Santoro">Giovanni Santoro</option>
+          <option value="Giovanni Tomassetti">Giovanni Tomassetti</option>
+          <option value="Giovanni Tommassetti">Giovanni Tommassetti</option>
+          <option value="Giuseppe Cruciani">Giuseppe Cruciani</option>
+          <option value="Giuseppe Loconsole">Giuseppe Loconsole</option>
+          <option value="Giuseppe Lorusso">Giuseppe Lorusso</option>
+          <option value="Giusto Lo Piparo">Giusto Lo Piparo</option>
+          <option value="Grazia Migneco">Grazia Migneco</option>
+          <option value="Gualberto Parmeggiani">Gualberto Parmeggiani</option>
+          <option value="Gualtiero Burzi">Gualtiero Burzi</option>
+          <option value="Guglielmo Menconi">Guglielmo Menconi</option>
+          <option value="Guido Laurini">Guido Laurini</option>
+          <option value="Guido Rutta">Guido Rutta</option>
+          <option value="Gérard Chaillou">Gérard Chaillou</option>
+          <option value="Herbert Pacton">Herbert Pacton</option>
+          <option value="Hiroshi Sakai">Hiroshi Sakai</option>
+          <option value="Hubert Stergacic">Hubert Stergacic</option>
+          <option value="I Pooh">I Pooh</option>
+          <option value="Igor Loddo">Igor Loddo</option>
+          <option value="Ilaria Spada">Ilaria Spada</option>
+          <option value="Isa Gallinelli">Isa Gallinelli</option>
+          <option value="Iuliana Ierugan">Iuliana Ierugan</option>
+          <option value="Ivan Perna">Ivan Perna</option>
+          <option value="Jacopo Costantini">Jacopo Costantini</option>
+          <option value="Jessica Polsky">Jessica Polsky</option>
+          <option value="Jeva Garkalne">Jeva Garkalne</option>
+          <option value="Josè Leibanti">Josè Leibanti</option>
+          <option value="Klara Bartovae">Klara Bartovae</option>
+          <option value="Laura Forgia">Laura Forgia</option>
+          <option value="Laura Locatelli">Laura Locatelli</option>
+          <option value="Laura Pestellini">Laura Pestellini</option>
+          <option value="Leda Celani">Leda Celani</option>
+          <option value="Leonardo Lapomarda">Leonardo Lapomarda</option>
+          <option value="Liliana Feldmann">Liliana Feldmann</option>
+          <option value="Linda Messerklinger">Linda Messerklinger</option>
+          <option value="Lorenzo De Marinis">Lorenzo De Marinis</option>
+          <option value="Los Caribenos">Los Caribenos</option>
+          <option value="Luca Di Prospero">Luca Di Prospero</option>
+          <option value="Luca Ferrario">Luca Ferrario</option>
+          <option value="Luciana Littizzetto">Luciana Littizzetto</option>
+          <option value="Lucilla Agosti">Lucilla Agosti</option>
+          <option value="Luigi Maria Burruano">Luigi Maria Burruano</option>
+          <option value="Maddalena Corvaglia">Maddalena Corvaglia</option>
+          <option value="Maddalena Trani">Maddalena Trani</option>
+          <option value="Magda Gomes">Magda Gomes</option>
+          <option value="Manuela Currau">Manuela Currau</option>
+          <option value="Marco Berry">Marco Berry</option>
+          <option value="Marco Cacciola">Marco Cacciola</option>
+          <option value="Marco Chiappa">Marco Chiappa</option>
+          <option value="Marco Chiesa">Marco Chiesa</option>
+          <option value="Marco Cortesi">Marco Cortesi</option>
+          <option value="Marco De Giorgi">Marco De Giorgi</option>
+          <option value="Marco Filatori">Marco Filatori</option>
+          <option value="Marco Fubini">Marco Fubini</option>
+          <option value="Marco Ghirlandi">Marco Ghirlandi</option>
+          <option value="Marco Mainini">Marco Mainini</option>
+          <option value="Marco Mangani">Marco Mangani</option>
+          <option value="Marco Merli">Marco Merli</option>
+          <option value="Marco Merlini">Marco Merlini</option>
+          <option value="Marco Messeri">Marco Messeri</option>
+          <option value="Marco Minetti">Marco Minetti</option>
+          <option value="Marco Morellini">Marco Morellini</option>
+          <option value="Marco Pieralisi">Marco Pieralisi</option>
+          <option value="Marco Rizzo">Marco Rizzo</option>
+          <option value="Marco Simeoli">Marco Simeoli</option>
+          <option value="Maria Eugenia D'Aquino">Maria Eugenia D'Aquino</option>
+          <option value="Marica Coco">Marica Coco</option>
+          <option value="Marija Milutinovic">Marija Milutinovic</option>
+          <option value="Mario Biondi">Mario Biondi</option>
+          <option value="Mario Ermito">Mario Ermito</option>
+          <option value="Mario Pietramala">Mario Pietramala</option>
+          <option value="Mario Pirrello">Mario Pirrello</option>
+          <option value="Mario Zucca">Mario Zucca</option>
+          <option value="Marta Favro - Caroline Sanchez">Marta Favro - Caroline Sanchez</option>
+          <option value="Martina Colombari">Martina Colombari</option>
+          <option value="Maruska Albertazzi">Maruska Albertazzi</option>
+          <option value="Massimiliano Loizzi">Massimiliano Loizzi</option>
+          <option value="Massimiliano Varrese">Massimiliano Varrese</option>
+          <option value="Massimiliano Zanellati">Massimiliano Zanellati</option>
+          <option value="Massimo Boldi">Massimo Boldi</option>
+          <option value="Massimo Cagnina">Massimo Cagnina</option>
+          <option value="Massimo Corengia">Massimo Corengia</option>
+          <option value="Massimo Malagugini">Massimo Malagugini</option>
+          <option value="Massimo Mirani">Massimo Mirani</option>
+          <option value="Massimo Muntoni">Massimo Muntoni</option>
+          <option value="Massimo Panizzari">Massimo Panizzari</option>
+          <option value="Massimo Poggio">Massimo Poggio</option>
+          <option value="Massimo Ranieri">Massimo Ranieri</option>
+          <option value="Massimo Sabet">Massimo Sabet</option>
+          <option value="Massimo Tomassoni">Massimo Tomassoni</option>
+          <option value="Matt Patresi">Matt Patresi</option>
+          <option value="Matteo Alfonso">Matteo Alfonso</option>
+          <option value="Matteo Barbè">Matteo Barbè</option>
+          <option value="Matteo Caremoli">Matteo Caremoli</option>
+          <option value="Matteo De Micheli">Matteo De Micheli</option>
+          <option value="Matteo Demicheli">Matteo Demicheli</option>
+          <option value="Matteo Levati">Matteo Levati</option>
+          <option value="Maurizio Lastrico">Maurizio Lastrico</option>
+          <option value="Maurizio Tabani">Maurizio Tabani</option>
+          <option value="Max Bertolani">Max Bertolani</option>
+          <option value="Michel Altieri">Michel Altieri</option>
+          <option value="Michela Coppa">Michela Coppa</option>
+          <option value="Michela Ottolini">Michela Ottolini</option>
+          <option value="Michela Quattrociocche">Michela Quattrociocche</option>
+          <option value="Michelangelo Pulci">Michelangelo Pulci</option>
+          <option value="Michele Alhaique">Michele Alhaique</option>
+          <option value="Michele Atieri">Michele Atieri</option>
+          <option value="Michele Bottini">Michele Bottini</option>
+          <option value="Michele Cesari">Michele Cesari</option>
+          <option value="Michele Mainardi">Michele Mainardi</option>
+          <option value="Michele Radice">Michele Radice</option>
+          <option value="Micol Azzurro">Micol Azzurro</option>
+          <option value="Mimmo Chianese">Mimmo Chianese</option>
+          <option value="Mino Manni">Mino Manni</option>
+          <option value="Miriam Leone">Miriam Leone</option>
+          <option value="Modou Gueye">Modou Gueye</option>
+          <option value="Monica Dugo">Monica Dugo</option>
+          <option value="Morena Salvino">Morena Salvino</option>
+          <option value="Nanni Tormen">Nanni Tormen</option>
+          <option value="Natale Ciravolo">Natale Ciravolo</option>
+          <option value="Natasha Stefanenko">Natasha Stefanenko</option>
+          <option value="Nicola Stravalaci">Nicola Stravalaci</option>
+          <option value="Nina Seničar">Nina Seničar</option>
+          <option value="Ninni Bruschetta">Ninni Bruschetta</option>
+          <option value="Nino Demonteverde">Nino Demonteverde</option>
+          <option value="Nora Amile">Nora Amile</option>
+          <option value="Obafemi Martins">Obafemi Martins</option>
+          <option value="Olivier Elouti Wangue">Olivier Elouti Wangue</option>
+          <option value="Oliviero Toscani">Oliviero Toscani</option>
+          <option value="Omar Pirovano">Omar Pirovano</option>
+          <option value="Osvaldo Salomone">Osvaldo Salomone</option>
+          <option value="Ottavia Lanza">Ottavia Lanza</option>
+          <option value="Paco Carlotto">Paco Carlotto</option>
+          <option value="Paco Carlucci">Paco Carlucci</option>
+          <option value="Paola Minaccioni">Paola Minaccioni</option>
+          <option value="Paolo Mazzarelli">Paolo Mazzarelli</option>
+          <option value="Paolo Pierobon">Paolo Pierobon</option>
+          <option value="Paolo Sesana">Paolo Sesana</option>
+          <option value="Pasquale Di Filippo">Pasquale Di Filippo</option>
+          <option value="Patrizia Mottola">Patrizia Mottola</option>
+          <option value="Patti Garofalo">Patti Garofalo</option>
+          <option value="Pedro Sarubbi">Pedro Sarubbi</option>
+          <option value="Peppe Bosone">Peppe Bosone</option>
+          <option value="Petra Khruz">Petra Khruz</option>
+          <option value="Piero Lenardon">Piero Lenardon</option>
+          <option value="Piero Maggiò">Piero Maggiò</option>
+          <option value="Pierpaolo Franzon">Pierpaolo Franzon</option>
+          <option value="Piersandro Freglio">Piersandro Freglio</option>
+          <option value="Pietro Alessandri">Pietro Alessandri</option>
+          <option value="Pietro Pignatelli">Pietro Pignatelli</option>
+          <option value="Pino Pirovano">Pino Pirovano</option>
+          <option value="Pooh">Pooh</option>
+          <option value="Raffaele Fallica">Raffaele Fallica</option>
+          <option value="Raffaele Gangale">Raffaele Gangale</option>
+          <option value="Raz Degan">Raz Degan</option>
+          <option value="Renato Soriano">Renato Soriano</option>
+          <option value="Riccardo Festa">Riccardo Festa</option>
+          <option value="Riccardo Fogli">Riccardo Fogli</option>
+          <option value="Roberta Rovelli">Roberta Rovelli</option>
+          <option value="Roberto Accornero">Roberto Accornero</option>
+          <option value="Roberto Da Crema">Roberto Da Crema</option>
+          <option value="Roberto De Sano">Roberto De Sano</option>
+          <option value="Roberto Messini">Roberto Messini</option>
+          <option value="Roberto Vandelli">Roberto Vandelli</option>
+          <option value="Roby Facchinetti">Roby Facchinetti</option>
+          <option value="Roland Litrico">Roland Litrico</option>
+          <option value="Rosanna Cancellieri">Rosanna Cancellieri</option>
+          <option value="Rosario Lisma">Rosario Lisma</option>
+          <option value="Sacha Oliviero">Sacha Oliviero</option>
+          <option value="Salvatore Rizzo">Salvatore Rizzo</option>
+          <option value="Salvatore Rodia">Salvatore Rodia</option>
+          <option value="Sara Bellodi">Sara Bellodi</option>
+          <option value="Sax Nicosia">Sax Nicosia</option>
+          <option value="Sebastiano Rizzo">Sebastiano Rizzo</option>
+          <option value="Sergio Meogrossi">Sergio Meogrossi</option>
+          <option value="Shigeki Maruyama">Shigeki Maruyama</option>
+          <option value="Silvia Ferretti">Silvia Ferretti</option>
+          <option value="Silvia Giordano">Silvia Giordano</option>
+          <option value="Silvia Manzoni">Silvia Manzoni</option>
+          <option value="Silvia Paonessa">Silvia Paonessa</option>
+          <option value="Simona Borioni">Simona Borioni</option>
+          <option value="Simona Marchini">Simona Marchini</option>
+          <option value="Simone Borrelli">Simone Borrelli</option>
+          <option value="Simone Buzzi">Simone Buzzi</option>
+          <option value="Simone Gerace">Simone Gerace</option>
+          <option value="Simone Repetto">Simone Repetto</option>
+          <option value="Simone Ricciardi">Simone Ricciardi</option>
+          <option value="Soria Monica Velasco">Soria Monica Velasco</option>
+          <option value="Stefano Annoni">Stefano Annoni</option>
+          <option value="Stefano Narsini">Stefano Narsini</option>
+          <option value="Stefano Saccotelli">Stefano Saccotelli</option>
+          <option value="Sung Un Cho">Sung Un Cho</option>
+          <option value="Susy Laude">Susy Laude</option>
+          <option value="Syria">Syria</option>
+          <option value="Tatiana Lepore">Tatiana Lepore</option>
+          <option value="Teo Guadalupi">Teo Guadalupi</option>
+          <option value="Tiziana Lambo">Tiziana Lambo</option>
+          <option value="Tomohiko Tasaka">Tomohiko Tasaka</option>
+          <option value="Toni Pandolfo">Toni Pandolfo</option>
+          <option value="Tony Rucco">Tony Rucco</option>
+          <option value="Tyler White">Tyler White</option>
+          <option value="Uberto Kovacevich">Uberto Kovacevich</option>
+          <option value="Ugo Dighero">Ugo Dighero</option>
+          <option value="Umberto Folliero">Umberto Folliero</option>
+          <option value="Umberto Noto">Umberto Noto</option>
+          <option value="Valentina Materiale">Valentina Materiale</option>
+          <option value="Valentina Melis">Valentina Melis</option>
+          <option value="Valeria Girelli">Valeria Girelli</option>
+          <option value="Valerio De Feudis">Valerio De Feudis</option>
+          <option value="Valerio Staffelli">Valerio Staffelli</option>
+          <option value="Vanessa Galipoli">Vanessa Galipoli</option>
+          <option value="Vanessa Marcandella">Vanessa Marcandella</option>
+          <option value="Veronica Franzosi">Veronica Franzosi</option>
+          <option value="Veronika Logan">Veronika Logan</option>
+          <option value="Vito">Vito</option>
+          <option value="Vittorio Boscolo">Vittorio Boscolo</option>
+          <option value="Vittorio Vaccaro">Vittorio Vaccaro</option>
+          <option value="William Angiuli">William Angiuli</option>
+          <option value="Woody Neri">Woody Neri</option>
+          <option value="Yang Shi">Yang Shi</option>
+          <option value="Yoon Cometti">Yoon Cometti</option>
+          <option value="Yoon Cometti Joyce">Yoon Cometti Joyce</option>
+          <option value="Yoon Joice Cometti">Yoon Joice Cometti</option>
+          <option value="Yvan Le Bolloc'h">Yvan Le Bolloc'h</option>
+          <option value="Yvette Jordan">Yvette Jordan</option>
+
+          </select>
+          <input type="submit" value="Conferma"/>
+          </form>
+        </div>
+        <div class="run-filter-elemento2">
+          <button class="avvio-rapido-season" id="only-guest-star"> Solo guest star
+            <div class="tooltip">
+              Cliccando questo pulsante <br> verranno restituite tutte le puntate <br> con le guest star selezionate
+            </div>
+          </button>
+        </div>
+      </div>
+      <!--fine checkbox gueststar-->
+
+
+
+
+    <p></p>
+     <!--Check box numero risultati in output-->
+    <form id="make_checkbox_select_numberoutput">
+            <select name="Numero risultati">
+              <option  value=Tutti>Tutti</option>
+              <option  value=10>10</option>
+              <option  value=25>25</option>
+              <option  value=50>50</option>
+              <option  value=100>100</option>
+              <option  value=250>250</option>
+              <option  value=500>500</option>
+              <option  value=1000>1000</option>
+            </select>
+            <input type="submit" value="Conferma"/>
+    </form>
+
+    <p></p>
+     <!--Check box per il tipo di ricerca-->
+    <form id="make_checkbox_select_searchtype">
+            <select name="Tipologia ricerca">
+              <option  value="Più attinenti" selected>Selezionare le puntate più attinenti</option>
+              <option  value="Tutte le keyword">Selezionate solo le puntante contenenti tutte le parole ricercate</option>
+            </select>
+            <input type="submit" value="Conferma"/>
+    </form>
+
+
+
+    </div>
+  </div>
 
   <script>
+    sessionStorage.setItem("filtri","close");
     // Define the GitHub repository details
     async function import_json(variabile_locale){
 
@@ -118,5 +629,10 @@
       document.body.appendChild(table);
     }
   </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+ <script  src="JavaScript/buttons.js"></script> <!--In questo script sono contenuti gli event listener Java.-->
+<script src="JavaScript/checkbox.js"></script>
+<script src="JavaScript/checkbox_list.js"></script>
+<script src="JavaScript/checkbox_onlyoneitem.js"></script>
   </body>
 </html>

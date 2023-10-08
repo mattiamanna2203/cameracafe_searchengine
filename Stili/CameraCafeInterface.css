@@ -1,4 +1,3 @@
-
 .flexbox{
     display: flex; /*Indichiamo che sia una flexbox*/
     flex-direction: row; /*Per avere un layout orizzontale,DEFAULT*/
@@ -6,10 +5,8 @@
 
 body{
  background-color:  antiquewhite;
+  top: 3000px; 
 }
-
-
-
 /* Apply the custom font-family to the text */
 .cartoony-text {
    font-size: 36px;
@@ -19,54 +16,99 @@ body{
    /*text-shadow: 1px 3px 0px #000; /* Add a shadow to the text for depth */
 }
 
-.avvio{
+
+/*Per modellare lo stile dei pulsanti della barra di ricerca:
+  - Filtri;
+  - Avviare la ricerca.
+*/
+.bottoni-barra-di-ricerca{
   flex:0.25; /* Larghezza desiderata, la stessa dell'input */
-   height: 30px; /* Altezza desiderata, la stessa dell'input */   
-font-size: 11px;
+  height: 30px; /* Altezza desiderata, la stessa dell'input */   
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/*Rendere più piccolo il pulsante dei filtri.*/
+#filter{
+  flex:0.10;
 }
 
 
+/*Per modellare lo stile della barra di ricerca.*/
 .barra-ricerca{
    flex:2;
    height: 28px;
    border : none;
 }
 
-#tabella_output{
-      position: fixed;
-      top: 70px;
-      left: 43%;
-      transform: translateX(-50%);
+.run-filter{
+  display: flex; /*Indichiamo che sia una flexbox*/
+  flex-direction: row; /*Per avere un layout orizzontale,DEFAULT*/
+  justify-content: space-between;
+  align-items: center;
 }
 
 
-table {
-  border-collapse: collapse;
+.avvio-rapido-season{
+  background: green;
+  cursor: pointer;
+  padding-top: 5px;
   position: relative;
-  display : block ;
-  overflow : auto;
-  max-Height : 1000px;
-  margin-top: 200px;
-  width: 90%;
-  margin-left: 100px;
-  background-color:  rgb(245, 245, 245);
-}
-
-thead{
-  position : sticky;
-  top : 0;
-  background-color : #f5f5f5;
-}
-
-th, td {
-  text-align: left;
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-}
-
-
-
-.att{
-  background-color: rgb(98, 98, 100);
   color: white;
+  text-shadow: 0px 1px 1px rgba(150, 150, 150, 1);
+  height: 33px;
+ font-size: 16px;
+  width: 130px;
+}
+
+.avvio-rapido-season:hover{
+   opacity: 0.8;
+}
+
+.avvio-rapido-season:hover  .tooltip{
+  opacity: 0.8;
+}
+
+.avvio-rapido-season:active{
+  opacity: 0.4;
+}
+
+.tooltip{
+    position: absolute;
+    background-color: gray;
+    color: white;
+    padding-left:4px ;
+    padding-top: 4px;
+    padding-right:4px ;
+    padding-bottom: 4px;
+    border-radius: 2px;
+    font-size: 12px;
+    bottom: -50px;
+    left: -80px;
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.avvio-rapido-season:hover  .tooltip-up{
+  opacity: 0.8;
+}
+
+.tooltip-up{
+    position: absolute;
+    background-color: gray;
+    color: white;
+    padding-left:4px ;
+    padding-top: 4px;
+    padding-right:4px ;
+    padding-bottom: 4px;
+    border-radius: 2px;
+    font-size: 12px;
+    bottom: 20px;
+    left: -60px;
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    white-space: nowrap;
 }

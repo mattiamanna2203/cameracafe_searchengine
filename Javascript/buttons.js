@@ -1,22 +1,30 @@
-  
-/*
+// Get references to the button and the modal
+var showModalButton = document.getElementById("filter");
+var modal = document.getElementById("myModal");
 
-    <script src="JavaScript/buttons.js"></script> <!--In questo script sono contenuti gli event listener Java.-->
+// Show the modal when the button is clicked
+showModalButton.addEventListener("click", function(){
+    let stato_filtri = sessionStorage.getItem("filtri");
+    if ( stato_filtri == "close"){
+        modal.style.display = "block";
+        sessionStorage.setItem("filtri","open");
+    }
+    else if  ( stato_filtri == "open"){
+        modal.style.display = "none";
+        sessionStorage.setItem("filtri","close");
+    }
+});
 
-   <!--Importare JavaScript-->
-    <script  src="./JavaScript/create_table.js"></script> <!--JavaScript: Input JSON, Output Tabella ben formattata-->
+// Close the modal when clicking anywhere outside of it
+window.addEventListener("click", function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        sessionStorage.setItem("filtri","close");
+    }
+});
 
-    <script type="text/javascript" src="./JavaScript/buttons.js"></script> <!--In questo script sono contenuti gli event listener Java.-->
-
-   <!--Importare JavaScript-->
-      <script type="text/javascript" src="./JavaScript/create_table.js"></script> <!--JavaScript: Input JSON, Output Tabella ben formattata-->
-
-
-    <!--Importare JavaScript-->
-      <script type="text/javaScript" src="https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Javascript/create_table.js"></script><!--JavaScript: Input JSON, Output Tabella ben formattata-->
-      <!--Importare JavaScript-->
-      <script src="https://raw.githack.com/mattiamanna2203/cameracafe_searchengine/master/Javascript/create_table.js"></script><!--JavaScript: Input JSON, Output Tabella ben formattata-->
-
-      <script src="https://raw.githack.com/mattiamanna2203/cameracafe_searchengine/master/Javascript/buttons.js"></script><!--JavaScript: Input JSON, Output Tabella ben formattata-->
-
-*/
+const closeModalButton = document.getElementById("closeModal");
+closeModalButton.addEventListener("click", function() {
+    modal.style.display = "none";
+    sessionStorage.setItem("filtri","close");
+});

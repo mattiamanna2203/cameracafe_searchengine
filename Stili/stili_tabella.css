@@ -1,0 +1,38 @@
+#tabella_output{
+      position: fixed;
+      top: 70px;
+      left: 43%;
+      transform: translateX(-50%);
+}
+
+
+table {
+  border-collapse: collapse;
+  position: relative;
+  display : block ;
+  overflow : auto;
+  max-Height : 1000px;
+  margin-top: 200px;
+  width: 90%;
+  margin-left: 100px;
+  background-color:  rgb(245, 245, 245);
+}
+
+thead{
+  position : sticky;
+  top : 0;
+  background-color : #f5f5f5;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+
+
+.att{
+  background-color: rgb(98, 98, 100);
+  color: white;
+}
