@@ -5,9 +5,6 @@ async function import_json(variabile_locale){
 
   var t =JSON.parse(data);
 
-
-
-
   const tkeys= Object.keys(t);
     let tableData=[];
 
@@ -78,5 +75,4 @@ async function import_json(variabile_locale){
 
 
   document.body.appendChild(table);
-
 }
