@@ -5,22 +5,21 @@
       <title>Cerca l'episodio</title>
 
       <!--Importare gli stili css-->
-      
       <link rel="stylesheet" href="Stili/CameraCafeInterface.css">
       <!--Rendere utilizzabili i pyscript-->
       <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
       <!--Rendere utilizzabili i pyscript-->
-      <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+      <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
 
       <!--Importare JavaScript-->
       <script src="JavaScript/create_table.js"></script> <!--JavaScript: Input JSON, Output Tabella ben formattata-->
-
-      <!--Importare PyScript-->
+     
+     <!--Importare pacchetti da destinare a PyScript-->
       <py-config>packages=["pandas","nltk"]</py-config> <!--Pacchetti-->
       <py-script src="PyScript/Light_SearchEngine.py"></py-script> <!--Funzioni back-end,cuore della searchengine-->
 
-      <py-script src="PyScript/events_listeners.py"></py-script> <!--Script contenente event listener utilizzati per richiamare le searchengine contenute nel file "PyScript/Light_SearchEngine.py"-->
-
+      <py-script src="PyScript/events_listeners.py"></py-script> <!--Script contenente event listener utilizzati per richiamare le searchengine contenute nel file "PyScript/Light_SearchEngine.py".
+      COME UTILIZZARE PYTHON E JAVASCRIPT INSIEME, utilizzare un python molto simile a JavaScript.-->
   </head>
   <body>
 
@@ -40,7 +39,5 @@
       </div>
     </main>
   </body>
-
-<!--Tutorial su pyscript: https://www.youtube.com/watch?v=owopzp436jM-->
-<!--https://stackoverflow.com/questions/74655110/set-js-sessionstorage-item-within-pyscript-->
+<!--<script  src="JavaScript/buttons.js"></script> <!--In questo script sono contenuti gli event listener Java.-->
 </html>
