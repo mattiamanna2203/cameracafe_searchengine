@@ -13,11 +13,14 @@
       <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
       <!--Importare JavaScript-->
-      <script src="Javascript/import_data.js"></script>
-      <py-config>
-      packages=["pandas","nltk"]
-      </py-config>
-      <py-script src="./Light_SearchEngine.py"></py-script>
+      <script src="JavaScript/create_table.js"></script> <!--JavaScript: Input JSON, Output Tabella ben formattata-->
+
+      <!--Importare PyScript-->
+      <py-config>packages=["pandas","nltk"]</py-config> <!--Pacchetti-->
+      <py-script src="PyScript/Light_SearchEngine.py"></py-script> <!--Funzioni back-end,cuore della searchengine-->
+
+      <py-script src="PyScript/events_listeners.py"></py-script> <!--Script contenente event listener utilizzati per richiamare le searchengine contenute nel file "PyScript/Light_SearchEngine.py"-->
+
   </head>
   <body>
 
@@ -40,21 +43,4 @@
 
 <!--Tutorial su pyscript: https://www.youtube.com/watch?v=owopzp436jM-->
 <!--https://stackoverflow.com/questions/74655110/set-js-sessionstorage-item-within-pyscript-->
-
-<py-script>
-from js import console, document, sessionStorage
-from pyodide.ffi.wrappers import add_event_listener
-from js import document as _DOC
-def avvio_ricerca(*arg):
-  stringa= document.querySelector(".barra-ricerca"); #estrarre la stringa digitata dall'utente.
-  output = query_ranking(stringa.value,100)
-  sessionStorage.setItem('database',output.to_json(orient='records'))
-  dati = sessionStorage.getItem('database');
-  js.import_json()
-
-avv = document.getElementById("avvio-ricerca")
-add_event_listener(avv, "click", avvio_ricerca)
-</py-script>
-
-<!--<script src="Javascript/buttons.js"></script>-->
 </html>

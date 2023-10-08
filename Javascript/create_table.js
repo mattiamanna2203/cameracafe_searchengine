@@ -1,7 +1,7 @@
 // Define the GitHub repository details
-async function import_json(){
+async function import_json(variabile_locale){
 
-  data = sessionStorage.getItem('database');
+  data = sessionStorage.getItem(variabile_locale);
 
   var t =JSON.parse(data);
 

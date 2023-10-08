@@ -1,13 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# # Importazione
-
-# ## Importazione pacchetti
-
-# In[1]:
-
-
+#%% Pacchetti
 import pandas as pd
 import json
 import re
@@ -19,7 +12,7 @@ import math
 from nltk.stem import SnowballStemmer
 from pyodide.http import open_url
 
-
+#%% Importazioni dati
 #Dataframe principale, info puntate, personaggi, guest star.
 df=pd.read_csv(open_url("https://raw.githubusercontent.com/mattiamanna2203/cameracafe_searchengine/master/Dati/light_dati_puliti.csv"))
 
@@ -54,7 +47,7 @@ except:
 
 
 
-
+#%% Funzione di stemming
 def stem_text_light(txt):
     stemmer_snowball = SnowballStemmer('italian')
     txt=txt.lower()  #testo minuscolo
@@ -93,10 +86,7 @@ def stem_text_light(txt):
     return [stemmer_snowball.stem(token) for token in doc if token not in determinanti_italiani and token not in congiunzioni_coordinazione_italiane]
 
 
-# ## Funzione tdidf
-
-# In[5]:
-
+#%% Funzione tdidf
 
 def querty_td_idf(query_str):
     #Inizialize dataset
