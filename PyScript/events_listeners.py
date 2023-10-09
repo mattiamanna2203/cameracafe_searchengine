@@ -26,7 +26,7 @@ def avvio_ricerca(*arg):
    season=sessionStorage.getItem("season") #stagione
 
 
-   if star == "None":
+   if star == "None" or star == "":
       star=None
    else :
       if "," in star: #Se c'è più di una guest star ci sarà una virgola e si farà lo split su di essa
@@ -34,7 +34,7 @@ def avvio_ricerca(*arg):
       else:       #se non c'è la virgola allora basta tenersi la stringa e metterla in una lista
          star=[star]
 
-   if season == "None":
+   if season == "None" or season == "":
       season=None
    else:
       if "," in season: #Se c'è più di una stagione ci sarà una virgola e si farà lo split su di essa
@@ -96,13 +96,19 @@ add_event_listener(avv, "click", avvio_ricerca)
 #Aggiungere un event listener alla pressione del tasto ENTER. Quando si premerà il tasto verrà richiamata la funzione  avvio_ricerca(*arg)  passando per la funzione handle_keypress che verifica che il tasto premuto sia Enter.
 add_event_listener(document.body,"keypress",handle_keypress)
 
-#%% Gestire filters
+#%% solo stagioni
+
 def season_call(*arg):
+   """
+   Questa funzione, associata al tasto SOLO STAGIONI, permette di fare una query riguardante solo le stagioni.
+   Ovvero prendere le puntate solo di una determinata stagione.
+   È possibile fare una restrizione sul numero di risultati in output.
+   """
    outputdim=sessionStorage.getItem("n_output")
    season=sessionStorage.getItem("season") #stagione
 
 
-   if season == "None":
+   if season == "None" or season == "":
       season = None
    else:
       if "," in season: #Se c'è più di una stagione ci sarà una virgola e si farà lo split su di essa
@@ -137,18 +143,23 @@ season_button = document.getElementById("only-season")
 add_event_listener(season_button, "click", season_call)
 
 
-
+#%% Solo guest star
 def starcall(*arg):
+   """
+   Questa funzione, associata al tasto SOLO GUEST STAR, permette di fare una query riguardante solo le guest star.
+   Ovvero prendere le puntate solo con determinate guest star presenti.
+   È possibile fare una restrizione sulle stagioni su cui ricercare.
+   """
    star=sessionStorage.getItem("star")
    season=sessionStorage.getItem("season") #stagione
-   if star == "None":
+   if star == "None" or star == "":
       star=None
    else :
       if "," in star: #Se c'è più di una guest star ci sarà una virgola e si farà lo split su di essa
          star=star.split(",")
       else:       #se non c'è la virgola allora basta tenersi la stringa e metterla in una lista
          star=[star]
-   if season == "None":
+   if season == "None" or season == "":
       season = None
    else:
       if "," in season: #Se c'è più di una stagione ci sarà una virgola e si farà lo split su di essa

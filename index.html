@@ -10,7 +10,15 @@
       <link rel="stylesheet" href="Stili/stile_filtri.css">
       <link rel="stylesheet" href="Stili/checkbox.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QHPXYRWD7V"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-QHPXYRWD7V');
+        </script>
 
       <!--Rendere utilizzabili i pyscript-->
       <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
@@ -28,7 +36,7 @@
 
    <div>
       <p class="cartoony-text">Camera Cafe Search Engine</p>
-       <p >Inserire delle parole chiave per ricercare un particolare episodio. In caso non funzionino i filtri: Numero risultati, Tipologia ricerca; fare prima una ricerca normale e poi utilizzarli. In caso di altri problemi ricaricare la pagina.</p>
+       <p >Inserire delle parole chiave per ricercare un particolare episodio.</p>
        
    </div>
 
@@ -70,7 +78,7 @@
           <button class="avvio-rapido-season" id="only-season"> 
           Solo stagioni
             <div class="tooltip-up">
-              Cliccando questo pulsante <br> verranno restituite tutte le puntate <br> delle stagioni selezionate
+              Cliccando questo pulsante <br> verranno restituite tutte le puntate <br> delle stagioni selezionate, si può filtrare il numero di risultati.
             </div>
           </button>
         </div>
@@ -522,7 +530,7 @@
         <div class="run-filter-elemento2">
           <button class="avvio-rapido-season" id="only-guest-star"> Solo guest star
             <div class="tooltip">
-              Cliccando questo pulsante <br> verranno restituite tutte le puntate <br> con le guest star selezionate
+              Cliccando questo pulsante <br> verranno restituite tutte le puntate <br> con le guest star selezionate, si può filtrare per stagione.
             </div>
           </button>
         </div>
