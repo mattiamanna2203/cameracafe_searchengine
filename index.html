@@ -11,12 +11,25 @@
       <link rel="stylesheet" href="Stili/checkbox.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
+
+      <!--Rendere utilizzabili i pyscript-->
+      <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+      <!--Rendere utilizzabili i pyscript-->
+      <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
+
+     <!--Importare pacchetti da destinare a PyScript-->
+      <py-config>packages=["pandas","nltk"]</py-config> <!--Pacchetti-->
+      <py-script src="PyScript/Light_SearchEngine.py"></py-script> <!--Funzioni back-end,cuore della searchengine-->
+      <py-script src="PyScript/events_listeners.py"></py-script> <!--Script contenente event listener utilizzati per richiamare le searchengine contenute nel file "PyScript/Light_SearchEngine.py".
+      COME UTILIZZARE PYTHON E JAVASCRIPT INSIEME, utilizzare un python molto simile a JavaScript.-->
+
   </head>
   <body>
 
    <div>
       <p class="cartoony-text">Camera Cafe Search Engine</p>
-       <p >Inserire delle parole chiave per ricercare un particolare episodio</p>
+       <p >Inserire delle parole chiave per ricercare un particolare episodio. In caso non funzionino i filtri: Numero risultati, Tipologia ricerca; fare prima una ricerca normale e poi utilizzarli.</p>
+       
    </div>
 
    <div class="flexbox">
@@ -42,7 +55,7 @@
       <div class="run-filter">
         <div class="run-filter-elemento1">
           <form id="make_checkbox_select">
-            <select name="Stagione">
+            <select name="Stagione" id="season">
               <option  value=1>Prima stagione</option>
               <option  value=2>Seconda stagione</option>
               <option  value=3>Terza stagione</option>
@@ -70,7 +83,7 @@
         <div class="run-filter-elemento1">
          
           <form id="make_checkbox_select_gueststar">
-          <select name="Guest star">
+          <select name="Guest star" id="gueststar">
           <option value="Adriana De Guilmi">Adriana De Guilmi</option>
           <option value="Adriano Braidotti">Adriano Braidotti</option>
           <option value="Adriano Martinez">Adriano Martinez</option>
@@ -522,8 +535,7 @@
     <p></p>
      <!--Check box numero risultati in output-->
     <form id="make_checkbox_select_numberoutput">
-            <select name="Numero risultati">
-              <option  value=Tutti>Tutti</option>
+            <select name="Numero risultati" id="outputdim">
               <option  value=10>10</option>
               <option  value=25>25</option>
               <option  value=50>50</option>
@@ -531,6 +543,7 @@
               <option  value=250>250</option>
               <option  value=500>500</option>
               <option  value=1000>1000</option>
+              <option  value=Tutti>Tutti</option>
             </select>
             <input type="submit" value="Conferma"/>
     </form>
@@ -538,7 +551,7 @@
     <p></p>
      <!--Check box per il tipo di ricerca-->
     <form id="make_checkbox_select_searchtype">
-            <select name="Tipologia ricerca">
+            <select name="Tipologia ricerca" id="researchtype">
               <option  value="Più attinenti" selected>Selezionare le puntate più attinenti</option>
               <option  value="Tutte le keyword">Selezionate solo le puntante contenenti tutte le parole ricercate</option>
             </select>
@@ -552,10 +565,18 @@
 
   <script>
     sessionStorage.setItem("filtri","close");
-    // Define the GitHub repository details
-    async function import_json(variabile_locale){
+    sessionStorage.setItem("n_output",25); //Fissare l'output a 25 (valore di default)
+    sessionStorage.setItem("searchtype","Più attinenti");
+    sessionStorage.setItem("star","None");
+    sessionStorage.setItem("season","None");
 
-      data = sessionStorage.getItem(variabile_locale);
+
+
+    // Define the GitHub repository details
+    async function import_json(){
+      modal.style.display = "none";
+      sessionStorage.setItem("filtri","close");
+      data = sessionStorage.getItem("database");
 
       var t =JSON.parse(data);
 
@@ -576,7 +597,7 @@
 
         var table =  document.createElement('table');
         table.setAttribute("id", "tabella_output");
-
+    
       }
       else{
         var table=document.getElementById("tabella_output");
@@ -1276,8 +1297,8 @@ var checkbox_select = function(params)
           // Event during initialization
           onApply : function(e)
           {
-            console.log("Conferma");
-            console.log(e.selected);
+           // console.log(e.selected);
+            sessionStorage.setItem("star",e.selected)
           }
       });
 
@@ -1296,8 +1317,8 @@ var checkbox_select = function(params)
           // Event during initialization
           onApply : function(e)
           {
-            console.log("Conferma");
-            console.log(e.selected);
+            //console.log(e.selected);
+            sessionStorage.setItem("season",e.selected)
           }
       });
 
@@ -1318,8 +1339,8 @@ var checkbox_select = function(params)
           // Event during initialization
           onApply : function(e)
           {
-            console.log("Conferma");
-            console.log(e.selected);
+          //  console.log(e.selected[0]);
+            sessionStorage.setItem("n_output",e.selected[0])
           }
       });
 
@@ -1338,8 +1359,8 @@ var checkbox_select = function(params)
           // Event during initialization
           onApply : function(e)
           {
-            console.log("Conferma");
-            console.log(e.selected);
+           // console.log(e.selected);
+            sessionStorage.setItem("searchtype",e.selected[0])
           }
       });
 

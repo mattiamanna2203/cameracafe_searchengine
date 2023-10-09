@@ -1,8 +1,9 @@
 #tabella_output{
-      position: fixed;
-      top: 70px;
+      /*position: fixed;*/
+      top: -150px;
       left: 43%;
       transform: translateX(-50%);
+      bottom: 50px;
 }
 
 
@@ -36,3 +37,5 @@ th, td {
   background-color: rgb(98, 98, 100);
   color: white;
 }
+
+

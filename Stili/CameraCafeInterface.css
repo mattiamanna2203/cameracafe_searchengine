@@ -4,8 +4,10 @@
 }
 
 body{
- background-color:  antiquewhite;
-  top: 3000px; 
+  padding:0;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: antiquewhite;
 }
 /* Apply the custom font-family to the text */
 .cartoony-text {

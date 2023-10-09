@@ -2,6 +2,10 @@
 # coding: utf-8
 #%% Pacchetti
 import pandas as pd
+import warnings
+
+# Filter out UserWarnings
+warnings.filterwarnings("ignore", category=UserWarning)
 import json
 import re
 import numpy as np
@@ -106,7 +110,7 @@ def querty_td_idf(query_str):
         #DF document frequency
         df_t=vocabulary[word]
         if df_t==0:
-            raise Exception("Can't find a document that contain all the word in the query, check input for misspelled words.")
+            return None
            # raise Value Error("Can't find a document that contain all the word in the query, check input for misspelled words.")
             #print("Can't find a document that contain all the word in the query, check input for misspelled words.")
             #return None
@@ -150,7 +154,7 @@ def querty_td_idf(query_str):
 # In[6]:
 
 
-def query_ranking_allMatch(query_str,k,season=None):
+def query_ranking_allMatch(query_str,k=25,season=None):
     t=""
     for i in set(query_str.split()):
         t += i + " "
@@ -202,18 +206,16 @@ def query_ranking_allMatch(query_str,k,season=None):
         if season==None:
             dd=dd[['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione']]
         else:
-            dd=dd[['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione']][df.season==season]
+            dd=dd[['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione']][df.season.isin(season)]
         
         #return dd
         if dd.shape[0]==0:
-            print("Nessuna puntata ritrovata: \n   - Provare ad ampliare la ricerca (es: eliminare restrizioni sulle stagioni);\n   - Controllare ciò che è stato scritto.")
             return None
     
         dd.reset_index(drop=True,inplace=True)
         #display(HTML(dd.head(k).to_html()))
         return dd
     else:
-        print("Impossibile trovare un documento che contenga tutta la parola nella query, controllare l'input per le parole errate.")
         return None
 
 
@@ -239,8 +241,13 @@ def filter_dataframe_by_columns(df, column_names):
 # In[8]:
 
 
-def only_season(season):
-    return df[df.season==season]
+def only_season(season,k=25):
+    if season==None:
+        return None
+    if k == None:
+        return df[df.season.isin(season)]
+
+    return  df[df.season.isin(season)].head(k)
 
 
 # ### Search only guest star 
@@ -251,10 +258,9 @@ def only_season(season):
 def only_star(stars,season=None):
     data=filter_dataframe_by_columns(df,stars)
     if season != None:
-        data=data[df.season==season]
+        data=data[df.season.isin(season)]
     
     if data.shape[0]==0: #in caso il dataframe di output è vuoto si print un messaggio di errore
-        print("Nessuna puntata ritrovata: \n   - Provare ad ampliare la ricerca (es: eliminare restrizioni sulle stagioni);\n   - Controllare ciò che è stato scritto.")
         return None
     return data
 
@@ -264,7 +270,7 @@ def only_star(stars,season=None):
 # In[10]:
 
 
-def query_ranking(query_str,k,season=None,stars=None,research_type=0):
+def query_ranking(query_str,k=25,season=None,stars=None):
     """
     season [None,1,2,3,4,5,6]
         Questo parametro permette di fare una scrematura delle puntate ritrovate dalla search engine in base alla stagione.
@@ -353,7 +359,8 @@ def query_ranking(query_str,k,season=None,stars=None,research_type=0):
     else:
         dd=dd[dd.Similarity > 0] #selezionare solo le puntate rilevanti
         #dd=dd[['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione',"Similarity"]][df.season==season] #per debug
-        dd=dd[['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione']][df.season==season]
+        #print(season)
+        dd=dd[['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione']][df.season.isin(season)]
     
     if dd.shape[0]==0: #in caso il dataframe di output è vuoto si print un messaggio di errore
        # print("Nessuna puntata ritrovata: \n   - Provare ad ampliare la ricerca (es: eliminare restrizioni sulle stagioni);\n   - Controllare ciò che è stato scritto.")
@@ -365,6 +372,9 @@ def query_ranking(query_str,k,season=None,stars=None,research_type=0):
     dd.reset_index(drop=True,inplace=True)
     #display(HTML(dd.head(k).to_html()))
     #print(dd.head(k))
+    if k == None:
+        return dd
+
     return dd.head(k)
 
 #%% Dati
