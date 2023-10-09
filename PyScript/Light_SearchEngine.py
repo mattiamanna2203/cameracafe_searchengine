@@ -245,9 +245,9 @@ def only_season(season,k=25):
     if season==None:
         return None
     if k == None:
-        return df[df.season.isin(season)]
+        return df[['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione']][df.season.isin(season)]
 
-    return  df[df.season.isin(season)].head(k)
+    return  df[['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione']][df.season.isin(season)].head(k)
 
 
 # ### Search only guest star 
@@ -262,7 +262,7 @@ def only_star(stars,season=None):
     
     if data.shape[0]==0: #in caso il dataframe di output è vuoto si print un messaggio di errore
         return None
-    return data
+    return data[['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione']]
 
 
 # ### Funzione di principale
