@@ -258,7 +258,7 @@ def only_season(season,k=25):
 def only_star(stars,season=None):
     data=filter_dataframe_by_columns(df,stars)
     if season != None:
-        data=data[df.season.isin(season)]
+        data=data[df.season.isin(season)][['season', 'episodio', 'titolo', 'trama', 'guest_star', 'prima_visione']]
     
     if data.shape[0]==0: #in caso il dataframe di output è vuoto si print un messaggio di errore
         return None
