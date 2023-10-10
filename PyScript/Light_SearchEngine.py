@@ -292,7 +292,7 @@ def query_ranking(query_str,k=25,season=None,stars=None):
     """
  
     
-    stemmer_snowball = SnowballStemmer('italian')
+
     t=""
     for i in set(query_str.split()):
         t += i + " "
@@ -304,9 +304,15 @@ def query_ranking(query_str,k=25,season=None,stars=None):
     check_parole=[word for word in stem_text_light(query_str) if word in vocabulary]
 
 
-    indici=list(DF2[stem_text_light(query_str)].index)
-
-
+    if len(check_parole)==0:
+        return None
+        
+    query_str=""
+    for i in check_parole:
+        query_str += i + " "
+    query_str=query_str.strip()
+    
+    indici=list(DF2[check_parole].index)
 
 
     #Inizialize a list for store the value of cosine_similarity
@@ -321,11 +327,10 @@ def query_ranking(query_str,k=25,season=None,stars=None):
 
 
     #Define a new dataset. In this dataset we will put the tf-idf of the matching documents.
-    a=DF2[DF2.index.isin(indici)][stem_text_light(query_str)]
+    a=DF2[DF2.index.isin(indici)][check_parole]
     a=a.reindex(sorted(a.columns), axis=1) 
 
     #Evaluate tf-idf of query
-    query_str=stemmer_snowball.stem(query_str)
     td_idf_query=querty_td_idf(query_str)
     td_idf_query=td_idf_query.reindex(sorted(a.columns), axis=1) 
 
